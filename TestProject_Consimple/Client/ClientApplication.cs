@@ -9,22 +9,19 @@ namespace TestProject_Consimple.Client
     {
         private const ConsoleKey _keyToContinue = ConsoleKey.Enter;
         private IDataHttpClient _httpClient;
-        private IDataProcessor _dataProcessor;
         private readonly IUserInteraction _interaction;
 
-        public ClientApplication(IDataHttpClient client, IDataProcessor dataProcessor, IUserInteraction interaction)
+        public ClientApplication(IDataHttpClient client, IUserInteraction interaction)
         {
             this._httpClient = client;
-            this._dataProcessor = dataProcessor;
             this._interaction = interaction;
         }
 
         public void Start()
         {
-
             BaseModel recievedData = GetData();
-            List<Tuple<string, string>> sortedData = CreateDataTable(recievedData);
-            PrintTable(sortedData);
+            string result = CreateDataTable(recievedData);
+            PrintTable(result);
             ExitOrRestartDialog(MessageTemplates.exitOrRestartMessage);
         }
 
@@ -33,19 +30,17 @@ namespace TestProject_Consimple.Client
             return this._httpClient.GetProducts();
         }
 
-        private List<Tuple<string, string>> CreateDataTable(BaseModel model)
+        private string CreateDataTable(BaseModel model)
         {
-            return this._dataProcessor.CreateTable(model);
+            return model.ToString();
         }
 
-        private void PrintTable(List<Tuple<string, string>> sortedData)
+        private void PrintTable(string table)
         {
             this._interaction.ShowResponse(MessageTemplates.tableHeaders);
 
-            foreach (Tuple<string, string> row in sortedData)
-            {
-                this._interaction.PrintTable(row.Item1, row.Item2);
-            }
+            this._interaction.ShowResponse(table);
+            
         }
 
         private void ExitOrRestartDialog(string message)

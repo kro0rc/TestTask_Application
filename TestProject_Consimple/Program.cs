@@ -14,7 +14,7 @@ namespace TestProject_Consimple
             DataHttpClient dataHttpClient = new DataHttpClient(httpClient, baseUri);
 
 
-            ClientApplication application = new ClientApplication(dataHttpClient, new DataProcessor(), new ConsoleInteraction());
+            ClientApplication application = new ClientApplication(dataHttpClient, new ConsoleInteraction());
             application.Start();
         }
     }

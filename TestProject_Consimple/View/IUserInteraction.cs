@@ -6,7 +6,5 @@ namespace TestProject_Consimple.View
     {
         ConsoleKey GetUserKey(string message);
         void ShowResponse(string message);
-        void PrintTable(string message1, string messagge2);
-
     }
 }

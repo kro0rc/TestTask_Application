@@ -26,12 +26,7 @@ namespace TestProject_Consimple.View
 
         public void ShowResponse(string message)
         {
-            Console.WriteLine(String.Format("{0, -100}", message));
-        }
-
-        public void PrintTable(string productName, string categoryName)
-        {
-            Console.WriteLine(String.Format("{0, -20}  |{1, -20}", productName , "\t" + categoryName));
+            Console.WriteLine(message);
         }
     }
 }
